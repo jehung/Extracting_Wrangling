@@ -51,6 +51,7 @@ def audit_file(filename, fields):
     for field in fields:
         L = []
         for d in data:    
+            print(d)
             try:
                 if d[field].startswith("{"):
                     L.append(type([]))
