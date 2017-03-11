@@ -37,7 +37,6 @@ def make_pipeline():
     match = {'$match': {'country': {'$eq':'India'}}}
     unwind = {'$unwind':'$isPartOf'}
     group = {'$group':{'_id':'$isPartOf', 'avgRegion':{'$avg':'$population'}}}
-    #unwind1 = {'$unwind':'$_id'}
     group1 = {'$group':{'_id':None, 'avg': {'$avg':'$avgRegion'}}}
 
     

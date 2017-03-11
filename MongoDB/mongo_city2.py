@@ -37,11 +37,15 @@ def get_db(db_name):
     return db
 
 def make_pipeline():
-    pipeline = [ ]
+    pipeline = [ ]    
     
-        
+    unwind = {'$unwind':'$isPartOf'}
+    group = {'$group':{'_id':{'isPartOf':'$isPartOf', 'country':'$country'}, 'avgRegion':{'$avg':'$population'}}}
+    unwind1 = {'$unwind':'$_id.country'}
+    group1 = {'$group':{'_id':'$_id.country', 'avgRegionalPopulation': {'$avg':'$avgRegion'}}}
     
-    
+    for e in [unwind, group, unwind1, group1]:
+        pipeline.append(e)
     
     return pipeline
 
